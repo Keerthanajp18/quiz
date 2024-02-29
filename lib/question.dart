@@ -23,12 +23,23 @@ class _queState extends State<que> {
   ];
 
   int q_no=0;
+  String result='';
   void nextqns(){
 
     if(q_no<question.length){
       q_no++;
     }
   }
+  void check(bool answer){
+    print(answer);
+    if(answer==question[q_no].ans) {
+      result='✔';
+    } else{
+        result='✖';
+    }
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,9 +69,11 @@ class _queState extends State<que> {
                 ),
                 onPressed: () {
                   setState((){
+                    check(true);
                     nextqns();
+
                   });
-                  print('super like keerthnh');
+
                 },
               ),
             ),
@@ -78,19 +91,18 @@ class _queState extends State<que> {
                 ),
                 onPressed: () {
                   setState((){
+                    check(false);
                     nextqns();
+
                   });
-                  print('potttan like shamil');
+
                 },
               ),
             ),
             SizedBox(
               height: 20,
             ),
-            Text(
-              '✔ ✔ ✖ ✔ ✖',
-              style: TextStyle(fontSize: 30),
-            )
+            Text(result),
           ],
         ),
       ),
